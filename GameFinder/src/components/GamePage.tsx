@@ -1,26 +1,16 @@
 import React from 'react'
 import { Genre } from "../hooks/useGenres";
 import { Platform } from "../hooks/usePlatforms";
+import { useParams } from 'react-router-dom'
+import { Game } from "../hooks/useGames"
 
-export interface Game {
-    name: string
-    desc: string
-    rating: number
-    platform: Platform | null
-    genre: Genre | null
-}
-
-interface Props {
-    game: Game
-}
-
-const GamePage = ({game}: Props) => {
+const GamePage = () => {
+    const params = useParams();
     return (
           <div>
-            <h1>{game.name}</h1>
-            <p>{game.desc}</p>
+            {params.gameId}
           </div>
-        );
+    );
 }
 
 export default GamePage

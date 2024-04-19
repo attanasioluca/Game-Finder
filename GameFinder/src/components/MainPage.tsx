@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Platform } from '../hooks/usePlatforms';
 import { Genre } from '../hooks/useGenres';
 import { Box, Flex, Grid, GridItem, Show } from '@chakra-ui/react';
@@ -15,8 +15,9 @@ export interface GameQuery {
     sortOrder: string;
     searchText: string;
 }
-const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+
 const MainPage = () => {
+    const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
     return (<Grid
         templateAreas={{
             base: `"nav" "main"`,

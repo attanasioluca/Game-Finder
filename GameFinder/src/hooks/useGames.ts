@@ -1,4 +1,4 @@
-import { GameQuery } from "../App";
+import { GameQuery } from "../components/MainPage";
 import useData from "./useData";
 import { Platform } from "./usePlatforms";
 

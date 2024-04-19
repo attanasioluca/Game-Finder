@@ -8,24 +8,30 @@ import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/usePlatforms";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GamePage, { Game } from "./components/GamePage";
 import MainPage from "./components/MainPage";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
-    const [gameSelected, setGameSelected] = useState<Game>({} as Game);
-    
+    const [gameSelected, setGameSelected] = useState<Game | null>();
+    const router = createBrowserRouter([
+        {
+            path: '/',
+            element: <MainPage/>
+        },
+        {
+            path: '/profile',
+            element: <ProfilePage/>
+        },
+        {
+            path: 'games/:gameId',
+            element: <GamePage/>
+        }
+    ]);
     return(
-        <Router>
-            <Routes>
-                <Route path="/main">
-                    <MainPage/>
-                </Route>
-                <Route path={gameSelected.name}>
-                    <GamePage game={gameSelected}/>
-                </Route>
-            </Routes>
-        </Router>
+        <RouterProvider router={router} />
+        
     )
 }
 export default App;
