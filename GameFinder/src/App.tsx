@@ -9,9 +9,10 @@ import { Platform } from "./hooks/usePlatforms";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import GamePage, { Game } from "./components/GamePage";
+import GamePage from "./components/GamePage";
 import MainPage from "./components/MainPage";
 import ProfilePage from "./components/ProfilePage";
+import { Game } from "./hooks/useGames";
 
 function App() {
     const [gameSelected, setGameSelected] = useState<Game | null>();
