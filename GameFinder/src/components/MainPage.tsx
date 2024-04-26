@@ -8,16 +8,21 @@ import GameHeading from './GameHeading';
 import PlatformSelector from './PlatformSelector';
 import SortSelector from './SortSelector';
 import GameGrid from './GameGrid';
+import { Game } from '../hooks/useGames';
 
 export interface GameQuery {
     genre: Genre | null;
     platform: Platform | null;
     sortOrder: string;
     searchText: string;
+    id: string | undefined;
+    description: string | undefined;
 }
+
 
 const MainPage = () => {
     const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+
     return (<Grid
         templateAreas={{
             base: `"nav" "main"`,

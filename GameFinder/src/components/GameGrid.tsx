@@ -6,7 +6,8 @@ import GameCardContainer from "./GameCardContainer";
 import { SiDigikeyelectronics } from "react-icons/si";
 import { Genre } from "../hooks/useGenres";
 import { Platform } from "../hooks/usePlatforms";
-import { GameQuery } from "../App";
+import { GameQuery } from "./MainPage";
+import { Game } from "../hooks/useGames";
 
 interface Props {
     gameQuery: GameQuery;
@@ -30,8 +31,8 @@ const GameGrid = ({ gameQuery }: Props) => {
                     </GameCardContainer>
                 ))}
             {data.map((game) => (
-                <GameCardContainer key={game.id}>
-                    <GameCard game={game} />
+                <GameCardContainer key={game.id} >
+                    <GameCard game={game}/>
                 </GameCardContainer>
             ))}
             

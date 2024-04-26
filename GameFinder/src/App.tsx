@@ -10,29 +10,29 @@ import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GamePage from "./components/GamePage";
-import MainPage from "./components/MainPage";
+import MainPage, { GameQuery } from "./components/MainPage";
 import ProfilePage from "./components/ProfilePage";
 import { Game } from "./hooks/useGames";
 
+
+
 function App() {
-    const [gameSelected, setGameSelected] = useState<Game | null>();
+    const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
     const router = createBrowserRouter([
         {
-            path: '/',
-            element: <MainPage/>
+            path: "/",
+            element: <MainPage />,
         },
         {
-            path: '/profile',
-            element: <ProfilePage/>
+            path: "/profile",
+            element: <ProfilePage />,
         },
         {
-            path: 'games/:gameId',
-            element: <GamePage/>
-        }
+            path: "games/:gameId",
+            element: <GamePage onSearch={(searchText) =>
+                setGameQuery({ ...gameQuery, searchText })}/>,
+        },
     ]);
-    return(
-        <RouterProvider router={router} />
-        
-    )
+    return <RouterProvider router={router} />;
 }
 export default App;
