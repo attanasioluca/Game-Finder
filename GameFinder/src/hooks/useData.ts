@@ -36,4 +36,5 @@ const useData = <T>(enpoint: string, requestConfig?: AxiosRequestConfig, deps?:a
     return { data, error, isLoading };
 }
 
+
 export default useData;

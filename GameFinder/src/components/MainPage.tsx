@@ -16,7 +16,6 @@ export interface GameQuery {
     sortOrder: string;
     searchText: string;
     id: string | undefined;
-    description: string | undefined;
 }
 
 

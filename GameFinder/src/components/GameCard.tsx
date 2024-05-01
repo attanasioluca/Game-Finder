@@ -14,7 +14,7 @@ interface Props {
 const GameCard = ({ game} : Props) => {
     const navigate = useNavigate();
     const handleNavigate = () => {
-        navigate('games/$(game.id)', {state: { game }});
+        navigate(`games/${game.id}`, {state: { game }});
     }
 
   return (
