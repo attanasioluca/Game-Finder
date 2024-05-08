@@ -3,13 +3,14 @@ import apiClient from "../services/api-client";
 import { AxiosRequestConfig, CanceledError } from "axios";
 import { Game } from "./useGames";
 import { Platform } from "./usePlatforms";
+import useData from "./useData";
 
 interface FetchResponse<T> {
     id: string;
     name: string;
     description: string;
     background_image: string;
-    parent_platforms: []
+    parent_platforms: { platform : Platform }[]
     metacritic: number;
     rating_top: number;
 }
@@ -18,7 +19,14 @@ const useGameInfo = <T>(id: string, requestConfig?: AxiosRequestConfig, deps?:an
 
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [data, setData] = useState<Game>({} as Game);
+    const [data, setData] = useState<Game>({id: '',
+    name: '',
+    description: '',
+    background_image: '',
+    parent_platforms: [],
+    metacritic: 0,
+    rating_top: 0
+    });
 
     useEffect(() => {
         const controller = new AbortController();
@@ -35,7 +43,6 @@ const useGameInfo = <T>(id: string, requestConfig?: AxiosRequestConfig, deps?:an
                     metacritic: res.data.metacritic,
                     rating_top: res.data.rating_top
                 }
-                console.log(transformedData);
                 setData(transformedData);
                 setIsLoading(false);
             })
@@ -46,7 +53,6 @@ const useGameInfo = <T>(id: string, requestConfig?: AxiosRequestConfig, deps?:an
             });
         return () => controller.abort();
     }, deps ? [...deps] : []);
-    console.log(data);
     return { data, error, isLoading };
 }
 
